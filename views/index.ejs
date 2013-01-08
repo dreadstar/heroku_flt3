@@ -75,7 +75,7 @@
         
        $('#delallcrit').click(function() {
           $('#crit_list').children().remove();
-          $('#searchresults div').html('');
+          $('#searchresults').empty();
         });
         
         $('#buildergo').click(function() {
@@ -129,7 +129,7 @@
             $.ajax({
               type: "POST",
               url: "/search",
-              data: { view: view, qstr: qstr },
+              data: { 'view': view, 'qstr': qstr },
               success: successHandler 
               
             });//end ajax
