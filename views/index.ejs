@@ -92,27 +92,7 @@
               type: "POST",
               url: "/search",
               data: dataString,
-              success: function () {
-     // where processing of returned values goes here
-          $('#searchresults div').html('');
-          var view= $('input:radio[name=srch-view]:checked').val();
-          var content ='';
-          if(view =='list')content ='<ul>';
-          $(content).appendTo("#searchresults");
-          $.each(data.friendlist_members, function(i,member){
-                  
-            if(view =='list'){
-              content = '<li><input type="checkbox" name="member_select_list" value="'+member.uid+'"><a href="https://www.facebook.com/'+member.uid+'" target="_top"><img src="https://graph.facebook.com/'+member.uid+'/picture?type=square" alt="'+member.name+'">'+member.name+'</a></li>';
-            }else{
-              //stream view
-              content = '<div class="clearfix storyContent"> <a id="js_11" aria-haspopup="true" aria-controls="js_10" aria-owns="js_10" class="actorPhoto lfloat" href="https://www.facebook.com/'+member.uid+'" target="_top"aria-hidden="true" data-ft="{&quot;type&quot;:60,&quot;tn&quot;:&quot;\u003C&quot;}" data-hovercard="https://www.facebook.com/ajax/hovercard/hovercard.php?id='+member.uid+'"><img class="_s0 profilePic _rw img" src="https://graph.facebook.com/'+member.uid+'/picture?type=square" alt="'+member.name+'"></a><div class="storyInnerContent"><div class="mainWrapper"><div role="article"><h5 tabindex="0" class="uiStreamMessage uiStreamHeadline" data-ft="{&quot;tn&quot;:&quot;:&quot;}"><div class="actorDescription actorName" data-ft="{&quot;type&quot;:2,&quot;tn&quot;:&quot;:&quot;}"><a href="https://www.facebook.com/'+member.uid+'?ref=stream" data-ft="{&quot;tn&quot;:&quot;;&quot;}" data-hovercard="https://www.facebook.com/ajax/hovercard/page.php?id='+member.uid+'">'+member.name+'</a></div></h5><h5 class="uiStreamMessage userContentWrapper" data-ft="{&quot;type&quot;:1,&quot;tn&quot;:&quot;K&quot;}"> <span class="messageBody" data-ft="{&quot;type&quot;:3}"><div><span class="userContent"><div id="id_50eb2f3a8077a9466213037" class="text_exposed_root">'+member.message+'</div></span></div></span></h5>';
-            }
-            $(content).appendTo("#searchresults");
-          }
-          if(view =='list')content ='<ul>';
-          $(content).appendTo("#searchresults");
-        }
-            });
+              success: function () {});
             return false;
         } );
         
