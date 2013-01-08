@@ -102,7 +102,7 @@
               type: "POST",
               url: "search",
               data: dataString,
-              success: function () {
+              success: function (data) {
                 alert(data);
                 $('#searchresults div').html('');
                 var view= $('input:radio[name=srch-view]:checked').val();
