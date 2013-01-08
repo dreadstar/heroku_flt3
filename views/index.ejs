@@ -85,7 +85,7 @@
            $('#crit_list > option').each(function() {
             qstr=qstr+ ' ' + $(this).val();
             });
-            var dataString='view='+view+'&qstr='+qstr;
+            var dataString='view='+view+'&qstr='+encodeURI(qstr);
              alert (dataString);
              // return false;
            
