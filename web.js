@@ -170,6 +170,7 @@ app.get('/', handle_facebook_request);
 // app.get('/list', handle_fblist_request);
 app.post('/', handle_facebook_request);
 app.post('/search', handle_fbsrchlist_request);
+app.get('/search', handle_fbsrchlist_request);
 var objectUrl = function (type, object) {
   return app_domain + '/' + type + '/' + object
 }
