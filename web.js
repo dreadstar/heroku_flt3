@@ -147,10 +147,10 @@ function handle_fbsrchlist_request(req, res) {
       function(cb) {
         // use fql to get a list of my friends that are using this app
         //'SELECT post_id, actor_id, target_id, message FROM stream WHERE source_id in (SELECT uid FROM friendlist_member WHERE 1=1 '+ req.params.qstr +') '
-        if (req.params.view == 'list') {
-         var querystr='SELECT uid, name, pic_square FROM user WHERE uid in (SELECT uid FROM friendlist_member WHERE 1=1 '+ req.params.qstr  +') ';
+        if (req.param('view', '') == 'list') {
+         var querystr='SELECT uid, name, pic_square FROM user WHERE uid in (SELECT uid FROM friendlist_member WHERE 1=1 '+ req.param('qstr', '')  +') ';
         }else{
-          var querystr='SELECT post_id, actor_id, target_id, message,uid, name, pic_square  FROM stream , user WHERE source_id in (SELECT uid FROM friendlist_member WHERE 1=1 '+ req.params.qstr +') and source_id=uid ';
+          var querystr='SELECT post_id, actor_id, target_id, message,uid, name, pic_square  FROM stream , user WHERE source_id in (SELECT uid FROM friendlist_member WHERE 1=1 '+ req.param('qstr', '') +') and source_id=uid ';
         }
         req.facebook.fql(querystr, function(result) {
           req.friendlist_members = result;
