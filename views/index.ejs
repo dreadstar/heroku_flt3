@@ -202,7 +202,7 @@
     </script>
 
     <header class="clearfix">
-      user<% print_r(user); %>
+      user<%=user %>
       <% if (user) { %>
       <p id="picture" style="background-image: url(https://graph.facebook.com/<%= user.id %>/picture?type=normal)"></p>
 
