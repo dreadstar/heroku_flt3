@@ -92,7 +92,7 @@
         
         var successHandler = function (data) {
                 alert(data);
-                $('#searchresults div').html('');
+                $('#searchresults').empty();
                 var view= $('input:radio[name=srch-view]:checked').val();
                 var content ='';
                 if(view =='list')content ='<ul>';
