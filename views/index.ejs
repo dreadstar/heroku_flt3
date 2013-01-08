@@ -82,7 +82,7 @@
           var flid=$("#friendlist_select").val();
           var flname=$("#friendlist_select option:selected").text();
           var op=$("#searchop").val();
-          var critval=op+' flid='+flid;
+          var critval=op+' flid="'+flid+'"';
           // alert(critval);
           var crittext=op+' '+flname;
            $('#crit_list').append('<option value="' + critval + '">' + crittext + '</option>');
