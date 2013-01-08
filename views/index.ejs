@@ -113,9 +113,7 @@
                 return false;
               }// end of success function
               
-        
-        
-        $('#searchgo').click(function() {
+        var searchClick = function() {
           var qstr='';
           var view= $('input:radio[name=srch-view]:checked').val();
           
@@ -128,12 +126,14 @@
             $.ajax({
               type: "POST",
               url: "search",
-              data: dataString,
+              data: { view: view, qstr: qstr },
               success: successHandler 
               
             });//end ajax
             
-        }); //end searchgo click
+        }
+        
+        $('#searchgo').click(searchClick); //end searchgo click
         
         
         $('#sendRequest').click(function() {
