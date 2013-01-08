@@ -37,13 +37,13 @@
       function search_send() {
           var qstr='';
           var view= $('input:radio[name=srch-view]:checked').val();
-          $('#searchresults div').html('');
-           $('#crit_list > option').each(function() {
-            qstr=qstr+ ' ' + $(this).val()
+          Jquery('#searchresults div').html('');
+           Jquery('#crit_list > option').each(function() {
+            qstr=qstr+ ' ' + $(this).val();
             });
             var dataString='view='+view+'&qstr='+qstr;
              //alert (dataString);return false;
-            $.ajax({
+            Jquery.ajax({
               type: "POST",
               url: "/search",
               data: dataString,
@@ -257,14 +257,14 @@
           <% }); %>
         </select><br />
         <input type="checkbox" name="runnow" id="srch-runnow" value="runnow">Run Immediately<br />
-        <input type="button" value="Add to List" id="buildergo" />
+        <input type="button" value="Add to List" id="buildergo" name ="buildergo" />
        
           <select id="crit_list" name="crit_list" size="8"></select>
           <input type="button" value="Remove Selected" id="delcrit" />
           <input type="button" value="Remove All" id="delallcrit" />
         <input type="radio" name="srch-view" id="srch-view-list" value="list">List/Email
         <input type="radio" name="srch-view" id="srch-view-stream" value="stream">Stream
-        <input type="submit" value="Run Search" id="searchgo" />
+        <input type="submit" value="Run Search" id="searchgo" name="searchgo" />
         </form>
       </div>
 
