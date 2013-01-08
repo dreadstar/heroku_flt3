@@ -88,21 +88,9 @@
            $('#crit_list').append('<option value="' + critval + '">' + crittext + '</option>');
         });
         
-        $('#searchgo').click(function() {
-          var qstr='';
-          var view= $('input:radio[name=srch-view]:checked').val();
-          
-           $('#crit_list > option').each(function() {
-            qstr=qstr+ ' ' + $(this).val();
-            });
-            var dataString='view='+view+'&qstr='+encodeURI(qstr)  ;
-              alert (dataString);
-             // return false;
-            $.ajax({
-              type: "POST",
-              url: "search",
-              data: dataString,
-              success: function (data) {
+        
+        
+        var successHandler = function (data) {
                 alert(data);
                 $('#searchresults div').html('');
                 var view= $('input:radio[name=srch-view]:checked').val();
@@ -124,6 +112,24 @@
                 }
                 return false;
               }// end of success function
+              
+        
+        
+        $('#searchgo').click(function() {
+          var qstr='';
+          var view= $('input:radio[name=srch-view]:checked').val();
+          
+           $('#crit_list > option').each(function() {
+            qstr=qstr+ ' ' + $(this).val();
+            });
+            var dataString='view='+view+'&qstr='+encodeURI(qstr)  ;
+              alert (dataString);
+             // return false;
+            $.ajax({
+              type: "POST",
+              url: "search",
+              data: dataString,
+              success: successHandler 
               
             });//end ajax
             
