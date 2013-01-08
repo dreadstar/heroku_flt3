@@ -72,8 +72,8 @@
           var flid=$("#friendlist_select").val();
           var flname=$("#friendlist_select option:selected").text();
           var op=$("#searchop").val();
-          var critval=op+' flid="'+flid+'"';
-          alert(flid+'|'+flname+'|'+op);
+          var critval=op+' flid='+flid;
+          alert(critval);
           var crittext=op+' '+flname;
            $('#crit_list').append('<option value="' + critval + '">' + crittext + '</option>');
         });
@@ -225,7 +225,7 @@
           <select id="crit_list" name="crit_list" size="8"></select>
           <input type="button" value="Remove Selected" id="delcrit" />
           <input type="button" value="Remove All" id="delallcrit" />
-        <input type="radio" name="srch-view" id="srch-view-list" value="list">List/Email
+        <input type="radio" checked name="srch-view" id="srch-view-list" value="list">List/Email
         <input type="radio" name="srch-view" id="srch-view-stream" value="stream">Stream
         <input type="submit" value="Run Search" id="searchgo" name="searchgo" />
         </form>
