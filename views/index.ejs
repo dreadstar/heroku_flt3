@@ -109,7 +109,7 @@
                 var content ='';
                 if(view =='list')content ='<ul>';
                 $(content).appendTo("#searchresults");
-                $.each(data.friendlist_members, function(i,member){
+                $.each(data, function(i,member){
                   if(view =='list'){
                     content = '<li><input type="checkbox" name="member_select_list" value="'+member.uid+'"><a href="https://www.facebook.com/'+member.uid+'" target="_top"><img src="https://graph.facebook.com/'+member.uid+'/picture?type=square" alt="'+member.name+'">'+member.name+'</a></li>';
                   }else{
