@@ -103,6 +103,7 @@
               url: "/search",
               data: dataString,
               success: function () {
+                alert(data);
                 $('#searchresults div').html('');
                 var view= $('input:radio[name=srch-view]:checked').val();
                 var content ='';
