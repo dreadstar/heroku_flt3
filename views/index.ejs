@@ -66,7 +66,17 @@
           );
         });
 
-       
+        $('#delcrit').click(function() {
+          $('#crit_list option:selected').remove();
+          if($('#crit_list option').size() > 0 && $('#srch-runnow').attr('checked')){
+          }
+            });
+            
+        
+       $('#delallcrit').click(function() {
+          $('#crit_list').children().remove();
+          $('#searchresults div').html('');
+        });
         
         $('#buildergo').click(function() {
           var flid=$("#friendlist_select").val();
