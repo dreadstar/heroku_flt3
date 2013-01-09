@@ -46,6 +46,7 @@ app.dynamicHelpers({
 function render_page(req, res) {
   req.facebook.app(function(app) {
     req.facebook.me(function(user) {
+      req.session.fbaccesstoken=req.facebook.token;
       res.render('index.ejs', {
         layout:    false,
         req:       req,
@@ -139,7 +140,7 @@ function handle_fblist_request(req, res) {
 
 //return the search results for search eventually will take a list of parameters to construct complex list query
 function handle_fbsrchlist_request(req, res) {
-  if (req.facebook.token) {
+  if (req.facebook.token || req.session.fbaccesstoken) {
 
     async.parallel([
       
