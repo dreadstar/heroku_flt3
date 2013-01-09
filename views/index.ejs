@@ -130,7 +130,18 @@
               type: "POST",
               url: "/search",
               data: { 'view': view, 'qstr': qstr },
-              success: successHandler 
+              success: successHandler,
+              error: function() {
+                 val errstr='';
+                $.each(data, function(i,member){
+                  errstr=errstr+'|'+i+'='+member;
+                  $.each(member, function(k,element){
+                     errstr=errstr+'('+k+'='+element+')';
+                  })
+                  errstr=errstr+'|';
+                });
+                alert('ERROR:'+errstr);
+              }
               
             });//end ajax
             
