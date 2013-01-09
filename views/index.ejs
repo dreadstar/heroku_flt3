@@ -131,7 +131,7 @@
               url: "/search",
               data: { 'view': view, 'qstr': qstr },
               success: successHandler,
-              error: function() {
+              fail: function(data) {
                  val errstr='';
                 $.each(data, function(i,member){
                   errstr=errstr+'|'+i+'='+member;
