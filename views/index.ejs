@@ -218,7 +218,7 @@
 
             if (response.session) {
                 // logged in and connected user, someone you know
-
+                access_token=response.session.access_token;
                 graphUrl = "https://graph.facebook.com/me?access_token=" +         response.session.access_token + "&callback=displayUser"
                 var script = document.createElement("script");
                 script.src = graphUrl;
