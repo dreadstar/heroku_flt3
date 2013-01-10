@@ -106,11 +106,13 @@
         });
        
        $('#srch-view-list').click(function(e) {
+        $('#srch-view-list').attr('checked', 'checked');
         if($('#crit_list option').size() > 0 && $('#srch-runnow').attr('checked')) searchClick();
         return false;
         });
        
        $('#srch-view-search').click(function(e) {
+        $('#srch-view-search').attr('checked', 'checked');
         if($('#crit_list option').size() > 0 && $('#srch-runnow').attr('checked')) searchClick();
         return false;
         });
