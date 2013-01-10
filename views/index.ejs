@@ -136,7 +136,7 @@
           if (outlist.length) qstr=qstr+' AND NOT flid in ('+outlist+') ';
           qstr=qstr+') ';
         }else{
-          qstr='SELECT post_id, actor_id, target_id, message FROM stream  WHERE source_id in (SELECT uid FROM friendlist_member WHERE 1=1  ';
+          qstr='SELECT post_id, actor_id, target_id, message,uid, name, pic_square   FROM stream  WHERE source_id in (SELECT uid FROM friendlist_member WHERE 1=1  ';
           if (inlist.length) qstr=qstr+' AND flid in ('+inlist+') ';
           if (outlist.length) qstr=qstr+' AND NOT flid in ('+outlist+') ';
           qstr=qstr+') ';
