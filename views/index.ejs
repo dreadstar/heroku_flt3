@@ -104,6 +104,11 @@
           $('#searchresults').empty();
           
         });
+       
+       $('.search-view').click(function(e) {
+        if($('#crit_list option').size() > 0 && $('#srch-runnow').attr('checked')) searchClick();
+        return false;
+        });
         
         $('#buildergo').click(function() {
           var flid=$("#friendlist_select").val();
@@ -380,7 +385,7 @@
         </select><br />
         <input type="checkbox" name="runnow" id="srch-runnow" value="runnow">Run Immediately &nbsp; &nbsp;
         <input type="button" value="Add to List" id="buildergo" name ="buildergo" /><br />
-       <input type="radio" checked name="srch-view" id="srch-view-list" value="list">List/Email View
+       <input class="search-view" type="radio" checked name="srch-view" id="srch-view-list" value="list">List/Email View
         <input type="radio" name="srch-view" id="srch-view-stream" value="stream">Stream View<br />
           <select id="crit_list" name="crit_list" size="8"></select><br />
           <input type="button" value="Remove Selected" id="delcrit" /><br />
