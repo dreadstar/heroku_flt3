@@ -114,6 +114,7 @@
           // alert(critval);
           var crittext=optxt+' '+flname;
            $('#crit_list').append('<option value="' + critval + '">' + crittext + '</option>');
+           if ($('#srch-runnow').attr('checked')) searchClick();
         });
         
         
