@@ -105,7 +105,12 @@
           
         });
        
-       $('.search-view').click(function(e) {
+       $('#srch-view-list').click(function(e) {
+        if($('#crit_list option').size() > 0 && $('#srch-runnow').attr('checked')) searchClick();
+        return false;
+        });
+       
+       $('#srch-view-search').click(function(e) {
         if($('#crit_list option').size() > 0 && $('#srch-runnow').attr('checked')) searchClick();
         return false;
         });
