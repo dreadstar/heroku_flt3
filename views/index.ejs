@@ -34,6 +34,31 @@
           console.log('The response was', response);
         }
       }
+      
+      function dump(arr,level) {
+	var dumped_text = "";
+	if(!level) level = 0;
+	
+	//The padding given at the beginning of the line.
+	var level_padding = "";
+	for(var j=0;j<level+1;j++) level_padding += "    ";
+	
+	if(typeof(arr) == 'object') { //Array/Hashes/Objects 
+		for(var item in arr) {
+			var value = arr[item];
+			
+			if(typeof(value) == 'object') { //If it is an array,
+				dumped_text += level_padding + "'" + item + "' ...\n";
+				dumped_text += dump(value,level+1);
+			} else {
+				dumped_text += level_padding + "'" + item + "' => \"" + value + "\"\n";
+			}
+		}
+	} else { //Stings/Chars/Numbers etc.
+		dumped_text = "===>"+arr+"<===("+typeof(arr)+")";
+	}
+	return dumped_text;
+}
   
       $(function(){
         // Set up so we handle click on the buttons
@@ -94,7 +119,7 @@
         
         
         var successHandler = function (data) {
-                alert(data);
+                alert(dump(data));
                 $('#searchresults').empty();
                 var view= $('input:radio[name=srch-view]:checked').val();
                 var content ='';
@@ -333,12 +358,12 @@
         </select><br />
         <input type="checkbox" name="runnow" id="srch-runnow" value="runnow">Run Immediately &nbsp; &nbsp;
         <input type="button" value="Add to List" id="buildergo" name ="buildergo" /><br />
-       
+       <input type="radio" checked name="srch-view" id="srch-view-list" value="list">List/Email View
+        <input type="radio" name="srch-view" id="srch-view-stream" value="stream">Stream View<br />
           <select id="crit_list" name="crit_list" size="8"></select>
           <input type="button" value="Remove Selected" id="delcrit" /><br>
           <input type="button" value="Remove All" id="delallcrit" />
-        <input type="radio" checked name="srch-view" id="srch-view-list" value="list">List/Email
-        <input type="radio" name="srch-view" id="srch-view-stream" value="stream">Stream
+        
         <input type="button" value="Run Search" id="searchgo" name="searchgo" />
         </form>
       </div>
