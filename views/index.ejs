@@ -121,12 +121,12 @@
           var view= $('input:radio[name=srch-view]:checked').val();
           var inlist=''; var outlist='';
           $('#crit_list > option').each(function() {
-            if($(this).val()< 0){
+            if($(this).val()> 0){
               if(inlist.length >0)inlist=inlist+',';
               inlist=inlist+$(this).val();
             }else{
               if(outlist.length >0)outlist=outlist+',';
-              outlist=outlist+$(this).val();
+              outlist=outlist+Math.abs($(this).val());
             }
           }); // close out the each loop
           
