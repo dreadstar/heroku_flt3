@@ -82,18 +82,19 @@
         $('#buildergo').click(function() {
           var flid=$("#friendlist_select").val();
           var flname=$("#friendlist_select option:selected").text();
-          var op=$("#searchop").val();
+          var op=$("#searchop  option:selected").val();
+          var optxt=$("#searchop option:selected").text();
           //var critval=op+' flid=|'+flid+'|';
-          var critval=op+' flid='+flid;
+          var critval=op+flid;
           // alert(critval);
-          var crittext=op+' '+flname;
+          var crittext=optxt+' '+flname;
            $('#crit_list').append('<option value="' + critval + '">' + crittext + '</option>');
         });
         
         
         
         var successHandler = function (data) {
-                alert(data);
+                alert(data[0]);
                 $('#searchresults').empty();
                 var view= $('input:radio[name=srch-view]:checked').val();
                 var content ='';
@@ -118,21 +119,52 @@
         var searchClick = function() {
           var qstr='';
           var view= $('input:radio[name=srch-view]:checked').val();
+          var inlist=''; var outlist='';
+          $('#crit_list > option').each(function() {
+            if($(this).val()< 0){
+              if(inlist.length >0)inlist=inlist+',';
+              inlist=inlist+$(this).val();
+            }else{
+              if(outlist.length >0)outlist=outlist+',';
+              outlist=outlist+$(this).val();
+            }
+          }); // close out the each loop
           
-           $('#crit_list > option').each(function() {
-            qstr=qstr+ ' ' + $(this).val();
-            });
+          if (view == 'list') {
+         qstr='SELECT uid, name, pic_square FROM user WHERE uid in (SELECT uid FROM friendlist_member WHERE 1=1 ';
+         if (inlist.length) qstr=qstr+' AND flid in ('+inlist+') ';
+          if (outlist.length) qstr=qstr+' AND NOT flid in ('+outlist+') ';
+          qstr=qstr+') ';
+        }else{
+          qstr='SELECT post_id, actor_id, target_id, message FROM stream  WHERE source_id in (SELECT uid FROM friendlist_member WHERE 1=1  ';
+          if (inlist.length) qstr=qstr+' AND flid in ('+inlist+') ';
+          if (outlist.length) qstr=qstr+' AND NOT flid in ('+outlist+') ';
+          qstr=qstr+') ';
+        }
+        
            // qstr= encodeURI(qstr.replace('|', '"'));
            //qstr= encodeURI(qstr);
-            var dataString='view='+view+'&qstr='+qstr  ;
-              alert (dataString);
+           // var dataString='view='+view+'&qstr='+qstr  ;
+              alert (qstr);
              // return false;
-            $.ajax({
+             FB.api({
+                method: 'fql.query',
+                query: qstr
+            },successHandler
+            /* function(response){
+                if (response[0]) {
+                    $("#container_like").show();
+                } else {
+                    $("#container_notlike").show();
+                }
+            } */
+            );
+          /*  removed to try fb  mthod direct$.ajax({
               type: "POST",
               url: "/search",
               data: { 'view': view, 'qstr': qstr, 'access_token':access_token },
-              success: successHandler,
-             /* error: function(data) {
+              success: successHandler, */
+             /* not working error: function(data) {
                  val errstr='';
                 $.each(data, function(i,member){
                   errstr=errstr+'|'+i+'='+member;
@@ -144,7 +176,7 @@
                 alert('ERROR:'+errstr);
               }*/
               
-            });//end ajax
+           /* });//end ajax */
             
         }
         
@@ -286,10 +318,10 @@
         <h3>Friend Lists</h3>
         <form name="builder" action="">
         <select name="op" id="searchop">
-          <option value="AND">AND</option>
-          <option value="AND NOT">AND NOT</option>
-          <option value="OR">OR</option>
-          <option value="OR NOT">OR NOT</option>
+          <option value="">IN</option>
+          <option value="-">NOT IN</option>
+         <!-- <option value="OR">OR</option>
+          <option value="OR NOT">OR NOT</option> -->
         </select>
         <select id="friendlist_select" name="list" class="friends">
           <% req.friendlist.forEach(function(flist) { %>
