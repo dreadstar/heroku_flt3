@@ -160,7 +160,7 @@ function handle_fbsrchlist_request(req, res) {
         });
       }
     ], function() {
-      res.json(req.friendlist_members);
+      res.json(req);
     });
 
   } else {
